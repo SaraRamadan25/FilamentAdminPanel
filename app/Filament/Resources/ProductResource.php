@@ -29,7 +29,7 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Fieldset::make('Main fields')->schema([
+                Forms\Components\Section::make('Main fields')->schema([
                     Forms\Components\TextInput::make('name')
                         ->required()
                         ->reactive()
@@ -38,7 +38,7 @@ class ProductResource extends Resource
                         }),
                     Forms\Components\TextInput::make('slug')->required(),
                 ]),
-                Forms\Components\Fieldset::make('Secondary fields')->schema([
+                Forms\Components\Section::make('Secondary fields')->schema([
                     Forms\Components\TextInput::make('price')->required()->rule('numeric'),
                     Forms\Components\FileUpload::make('image'),
                 ]),
