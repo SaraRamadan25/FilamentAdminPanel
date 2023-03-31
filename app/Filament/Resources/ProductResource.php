@@ -29,7 +29,7 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()->schema([
+                Forms\Components\Fieldset::make('Main fields')->schema([
                     Forms\Components\TextInput::make('name')
                         ->required()
                         ->reactive()
@@ -37,9 +37,11 @@ class ProductResource extends Resource
                             $set('slug', Str::slug($state));
                         }),
                     Forms\Components\TextInput::make('slug')->required(),
-                ])->columns(2),
-                Forms\Components\TextInput::make('price')->required()->rule('numeric'),
-                Forms\Components\FileUpload::make('image'),
+                ]),
+                Forms\Components\Fieldset::make('Secondary fields')->schema([
+                    Forms\Components\TextInput::make('price')->required()->rule('numeric'),
+                    Forms\Components\FileUpload::make('image'),
+                ]),
             ]);
     }
     public static function table(Table $table): Table
